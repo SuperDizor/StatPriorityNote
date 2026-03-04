@@ -1,8 +1,5 @@
 package-as: StatPriorityNote
 
-move-folders:
-  StatPriorityNote: .
-
 ignore:
   - .github
   - README.md
