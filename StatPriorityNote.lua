@@ -1,70 +1,108 @@
 -- Stat priorities by specID
 local PRIORITIES = {
     -- DEATH KNIGHT
-    [250] = "Str > Vers > Mast > Haste > Crit", -- Blood
-    [251] = "Str > Haste > Mast > Crit > Vers", -- Frost
-    [252] = "Str > Haste > Mast > Crit > Vers", -- Unholy
+    [250] = {
+        "Deathbringer: Strength > Critical Strike > Mastery = Versatility > Haste",
+        "San'layn: Strength > Haste > Mastery = Critical Strike = Versatility",
+    },                                                                                                  -- Blood
+    [251] = "Strength > Critical Strike > Mastery > Haste > Versatility",                               -- Frost
+    [252] = "Strength > Mastery > Critical Strike > Haste > Versatility",                               -- Unholy
 
     -- DEMON HUNTER
-    [577]  = "Agi > Crit > Haste > Mast > Vers", -- Havoc
-    [581]  = "Agi > Haste > Vers > Mast > Crit", -- Vengeance
-    [1480] = "Int > Mast > Haste > Crit > Vers", -- Devourer (if specID is correct)
+    [577]  = "Agility > Critical Strike > Mastery > Haste > Versatility",                               -- Havoc
+    [581]  = "Item Level / Agility / Stamina > Haste > Critical Strike > Versatility > Mastery",        -- Vengeance
+    [1480] = {
+        "Annihilator: Intellect > Haste > Mastery > Critical Strike > Versatility",
+        "Void-Scarred: Intellect > Mastery > Haste > Critical Strike > Versatility"
+    },                                                                                                  -- Devourer
 
     -- DRUID
-    [102] = "Int > Mast > Haste > Crit > Vers", -- Balance
-    [103] = "Agi > Crit > Mast > Haste > Vers", -- Feral
-    [104] = "Agi > Vers > Mast > Haste > Crit", -- Guardian
-    [105] = "Int > Haste > Mast > Crit > Vers", -- Restoration
+    [102] = "Intellect > Mastery > Haste > Versatility > Critical Strike",                              -- Balance
+    [103] = {
+        "Druid of the Claw: Agility > Mastery > Haste > Critical Strike > Versatility",
+        "Wildstalker: Agility > Mastery > Critical Strike > Haste > Versatility"
+    },                                                                                                  -- Feral
+    [104] = "Agility > Haste > Versatility > Critical Strike > Mastery",                                -- Guardian
+    [105] = "Haste > Mastery > Versatility > Intellect > Critical Strike",                              -- Restoration
 
     -- EVOKER
-    [1467] = "Int > Mast > Haste > Crit > Vers", -- Devastation
-    [1468] = "Int > Haste > Mast > Crit > Vers", -- Preservation
-    [1473] = "Int > Mast > Haste > Crit > Vers", -- Augmentation
+    [1467] = "Intellect > Critical Strike > Haste > Mastery > Versatility",                             -- Devastation
+    [1468] = "Mastery > Haste > Versatility > Critical Strike > Intellect",                             -- Preservation
+    [1473] = "Intellect > Critical Strike > Haste > Mastery > Versatility",                             -- Augmentation
 
     -- HUNTER
-    [253] = "Agi > Crit > Haste > Mast > Vers", -- Beast Mastery
-    [254] = "Agi > Crit > Mast > Haste > Vers", -- Marksmanship
-    [255] = "Agi > Haste > Crit > Mast > Vers", -- Survival
+    [253] = {
+        "Pack Leader (Mythic+): Weapon Damage > Agility > Mastery > Critical Strike > Versatility > Haste",
+        "Pack Leader (Raid): Weapon Damage > Agility > Mastery > Haste > Critical Strike > Versatility",
+        "Dark Ranger (Mythic+): Weapon Damage > Agility > Mastery > Critical Strike > Haste = Versatility",
+        "Dark Ranger (Raid): Weapon Damage > Agility > Mastery > Haste > Critical Strike > Versatility"
+    },                                                                                                  -- Beast Mastery
+    [254] = "Agility > Critical Strike > Mastery > Haste > Versatility",                                -- Marksmanship
+    [255] = {
+        "Pack Leader: Agility > Mastery > Critical Strike = Haste > Versatility",
+        "Sentinel: Agility > Mastery > Critical Strike > Haste > Versatility"
+    },                                                                                                  -- Survival
 
     -- MAGE
-    [62] = "Int > Mast > Haste > Crit > Vers", -- Arcane
-    [63] = "Int > Crit > Haste > Mast > Vers", -- Fire
-    [64] = "Int > Mast > Haste > Crit > Vers", -- Frost
+    [62] = "Intellect > Mastery > Haste > Critical Strike > Versatility",                               -- Arcane
+    [63] = "Intellect > Haste > Mastery > Versatility > Critical Strike",                               -- Fire
+    [64] = "Intellect > Mastery > Critical Strike > Haste > Versatility",                               -- Frost
 
     -- MONK
-    [268] = "Agi > Vers > Mast > Haste > Crit", -- Brewmaster
-    [269] = "Agi > Mast > Crit > Haste > Vers", -- Windwalker
-    [270] = "Int > Haste > Crit > Mast > Vers", -- Mistweaver
+    [268] = {
+        "Defensive: Item Level / Agility / Armor / Stamina > Versatility = Critical Strike = Mastery > Haste",
+        "Offensive: Item Level / Agility > Critical Strike > Mastery > Versatility > Haste"
+    },                                                                                                  -- Brewmaster
+    [269] = {
+        "Shado-pan: Agility > Haste > Critical Strike > Mastery > Versatility",
+        "Conduit of the Celestials: Agility > Haste > Mastery > Critical Strike > Versatility"
+    },                                                                                                  -- Windwalker
+    [270] = {
+        "Raid: Intellect > Haste > Critical Strike > Versatility > Mastery",
+        "Mythic+: Intellect > Haste > Versatility > Critical Strike > Mastery"
+    },                                                                                                  -- Mistweaver
 
     -- PALADIN
-    [65] = "Int > Haste > Crit > Mast > Vers", -- Holy
-    [66] = "Str > Haste > Mast > Vers > Crit", -- Protection
-    [70] = "Str > Mast > Haste > Crit > Vers", -- Retribution
+    [65] = "Intellect > Mastery > Haste = Critical Strike > Versatility",                               -- Holy
+    [66] = {
+        "Survivability: Strength > Haste > Versatility > Mastery > Critical Strike",
+        "DPS: Strength > Haste > Versatility > Critical Strike > Mastery"
+    },                                                                                                  -- Protection
+    [70] = "Strength > Mastery > Haste > Critical Strike > Versatility",                                -- Retribution
 
     -- PRIEST
-    [256] = "Int > Haste > Crit > Mast > Vers", -- Discipline
-    [257] = "Int > Mast > Haste > Crit > Vers", -- Holy
-    [258] = "Int > Haste > Mast > Crit > Vers", -- Shadow
+    [256] = {
+        "Raid: Intellect > Haste > Critical Strike > Mastery > Versatility",
+        "Mythic+: Intellect > Haste > Critical Strike > Versatility > Mastery"
+    },                                                                                                  -- Discipline
+    [257] = {
+        "Raid: Intellect > Critical Strike > Mastery > Versatility > Haste",
+        "Mythic+: Intellect > Critical Strike > Haste > Versatility > Mastery"
+    },                                                                                                  -- Holy
+    [258] = "Intellect > Haste > Mastery > Critical Strike > Versatility",                              -- Shadow
 
     -- ROGUE
-    [259] = "Agi > Mast > Crit > Haste > Vers", -- Assassination
-    [260] = "Agi > Haste > Vers > Crit > Mast", -- Outlaw
-    [261] = "Agi > Mast > Crit > Haste > Vers", -- Subtlety
+    [259] = "Agility > Critical Strike > Haste > Mastery > Versatility",                                -- Assassination
+    [260] = "Agility > Haste > Critical Strike > Versatility > Mastery",                                -- Outlaw
+    [261] = "Agility > Mastery > Haste  > Critical Strike > Versatility",                               -- Subtlety
 
     -- SHAMAN
-    [262] = "Int > Mast > Haste > Crit > Vers", -- Elemental
-    [263] = "Agi > Mast > Haste > Crit > Vers", -- Enhancement
-    [264] = "Int > Haste > Crit > Mast > Vers", -- Restoration
+    [262] = "Mastery > Critical Strike = Haste > Versatility > Intellect",                              -- Elemental
+    [263] = {
+        "Stormbringer: Agility > Haste > Mastery = Critical Strike > Versatility",
+        "Totemic: Agility > Mastery > Haste > Critical Strike > Versatility"
+    },                                                                                                  -- Enhancement
+    [264] = "Intellect > Critical Strike = Haste > Versatility > Mastery",                              -- Restoration
 
     -- WARLOCK
-    [265] = "Int > Haste > Mast > Crit > Vers", -- Affliction
-    [266] = "Int > Mast > Haste > Crit > Vers", -- Demonology
-    [267] = "Int > Mast > Haste > Crit > Vers", -- Destruction
+    [265] = "Intellect > Mastery = Critical Strike > Haste > Versatility",                              -- Affliction
+    [266] = "Intellect > Haste = Critical Strike > Mastery > Versatility",                              -- Demonology
+    [267] = "Intellect > Haste > Mastery >= Critical Strike > Versatility",                             -- Destruction
 
     -- WARRIOR
-    [71] = "Str > Mast > Crit > Haste > Vers", -- Arms
-    [72] = "Str > Haste > Mast > Crit > Vers", -- Fury
-    [73] = "Str > Haste > Vers > Mast > Crit", -- Protection
+    [71] = "Strength > Critical Strike > Haste > Mastery > Versatility",                                -- Arms
+    [72] = "Strength > Haste > Mastery > Critical Strike > Versatility",                                -- Fury
+    [73] = "Strength > Haste > Critical Strike > Versatility > Mastery",                                -- Protection
 }
 
 -- ---------- Helpers (class + spec) ----------
@@ -91,7 +129,6 @@ local function TryApplyElvUISkin(panel, headerFS, statsFS)
     local E = unpack(_G.ElvUI)
     if not E then return false end
 
-    -- Use ElvUI templates if available
     if panel.SetTemplate then
         panel:SetTemplate("Transparent") -- or "Default"
     elseif E.CreateBackdrop then
@@ -100,7 +137,6 @@ local function TryApplyElvUISkin(panel, headerFS, statsFS)
         return false
     end
 
-    -- ElvUI fonts if available
     local font = (E.media and E.media.normFont) or "Fonts\\FRIZQT__.TTF"
     if headerFS and headerFS.SetFont then
         headerFS:SetFont(font, 13, "OUTLINE")
@@ -109,7 +145,6 @@ local function TryApplyElvUISkin(panel, headerFS, statsFS)
         statsFS:SetFont(font, 12, "OUTLINE")
     end
 
-    -- ElvUI value color for the stats line
     if statsFS and statsFS.SetTextColor and E.media and E.media.rgbvaluecolor then
         local r, g, b = E.media.rgbvaluecolor.r, E.media.rgbvaluecolor.g, E.media.rgbvaluecolor.b
         statsFS:SetTextColor(r, g, b)
@@ -128,12 +163,10 @@ local function ResizePanelToContent()
     local stats  = CharacterFrame.StatPriorityNoteStats
     if not panel or not header or not stats then return end
 
-    -- Sizing parameters
-    local paddingX = 24   -- total horizontal padding
+    local paddingX = 24
     local minWidth = 220
-    local maxWidth = 620  -- keep the panel from becoming too wide
+    local maxWidth = 620
 
-    -- Force text width recalculation
     header:SetWidth(0)
     stats:SetWidth(0)
 
@@ -146,12 +179,10 @@ local function ResizePanelToContent()
 
     panel:SetWidth(width)
 
-    -- If we hit maxWidth, wrap the stats line cleanly
     local textAreaW = width - paddingX
     stats:SetWidth(textAreaW)
     stats:SetWordWrap(true)
 
-    -- Adjust height if the stats line wraps
     local baseH  = 46
     local extraH = math.max(0, (stats:GetStringHeight() or 0) - 12)
     panel:SetHeight(baseH + extraH)
@@ -166,14 +197,12 @@ local function CreateNote()
     local panel = CreateFrame("Frame", nil, CharacterFrame, "BackdropTemplate")
     panel:SetSize(420, 46)
 
-    -- Anchor above the Character frame (top-right)
     panel:ClearAllPoints()
     panel:SetPoint("BOTTOMRIGHT", CharacterFrame, "TOPRIGHT", 0, 6)
 
     panel:SetFrameStrata("DIALOG")
     panel:SetFrameLevel(CharacterFrame:GetFrameLevel() + 200)
 
-    -- Blizzard fallback styling (if ElvUI isn't available)
     panel:SetBackdrop({
         bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -182,12 +211,10 @@ local function CreateNote()
     })
     panel:SetBackdropColor(0, 0, 0, 0.75)
 
-    -- Line 1: Colored class name + spec name (left aligned)
     local header = panel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     header:SetPoint("TOPLEFT", panel, "TOPLEFT", 10, -8)
     header:SetJustifyH("LEFT")
 
-    -- Line 2: Stat priority (left aligned)
     local stats = panel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     stats:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 0, -4)
     stats:SetJustifyH("LEFT")
@@ -195,10 +222,8 @@ local function CreateNote()
     stats:SetShadowColor(0, 0, 0, 1)
     stats:SetShadowOffset(1, -1)
 
-    -- Apply ElvUI skin if available
     local skinned = TryApplyElvUISkin(panel, header, stats)
     if skinned then
-        -- Optional: remove shadow when using outlined fonts
         stats:SetShadowOffset(0, 0)
     end
 
@@ -212,27 +237,28 @@ local function UpdateNote()
 
     local specID, specName = GetSpecInfoSafe()
 
-    local headerText = ColorizeClassName()
-    if specName then
-        headerText = headerText .. " - " .. specName
-    else
-        headerText = headerText .. " - No Spec"
-    end
+    local headerText = ColorizeClassName() .. " - " .. (specName or "No Spec")
 
     local statsText = "Set stat priority for this spec"
     if specID and PRIORITIES[specID] then
-        statsText = PRIORITIES[specID]
+        local entry = PRIORITIES[specID]
+
+        if type(entry) == "table" then
+            -- Multiple lines support: join with newline
+            statsText = table.concat(entry, "\n")
+        else
+            -- Single line support
+            statsText = entry
+        end
     end
 
     CharacterFrame.StatPriorityNoteHeader:SetText(headerText)
     CharacterFrame.StatPriorityNoteStats:SetText(statsText)
 
-    -- Auto-resize based on rendered text width (works with ElvUI fonts too)
     ResizePanelToContent()
 end
 
 local function EnsureCharacterUI()
-    -- Retail/Midnight safe-load (avoid re-loading if already loaded)
     if _G.CharacterFrame then return end
 
     if C_AddOns and C_AddOns.IsAddOnLoaded and C_AddOns.IsAddOnLoaded("Blizzard_CharacterUI") then
@@ -263,7 +289,6 @@ f:SetScript("OnEvent", function(_, event, unit)
             UpdateNote()
         end)
 
-        -- In case the frame is already available
         CreateNote()
         UpdateNote()
 

@@ -1,7 +1,7 @@
 ## Interface: 120001
-## Title: StatPriorityNote
-## Notes: Adds a stat priority note on the Character panel
-## Author: Derthalus - Zul'Jin
+## Title: Stat Priority Note
+## Notes: Shows stat priority above the Character frame.
+## Author: SuperDizor
 ## Version: 1.0
 ## IconTexture: Interface\AddOns\StatPriorityNote\StatPriorityNote.tga
 

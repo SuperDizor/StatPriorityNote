@@ -1,0 +1,8 @@
+package-as: StatPriorityNote
+
+enable-nolib-creation: no
+
+ignore:
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
