@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,4 +19,4 @@ jobs:
         env:
           CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
         with:
-          args: -c -p ${{ github.workspace }} -g ${{ github.repository }} -t ${{ github.ref_name }}
+          args: -c -g ${{ github.repository }} -t ${{ github.ref_name }}
