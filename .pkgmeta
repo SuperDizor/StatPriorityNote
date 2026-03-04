@@ -1,9 +1,11 @@
 package-as: StatPriorityNote
 
-enable-nolib-creation: no
+move-folders:
+  StatPriorityNote: StatPriorityNote
 
 ignore:
+  - .github
   - README.md
   - CHANGELOG.md
   - LICENSE
-  - .github
+  - StatPriorityNote.png

@@ -24,4 +24,4 @@ jobs:
         env:
           CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
         with:
-          args: -t StatPriorityNote -p 1477150
+          args: -p 1477150
