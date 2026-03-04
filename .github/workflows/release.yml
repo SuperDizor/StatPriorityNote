@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,9 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Package and publish to CurseForge
+      - name: Package and publish
         uses: BigWigsMods/packager@v2
         env:
           CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: -c -g ${{ github.repository }} -t ${{ github.ref_name }}
+          args: -c

@@ -1,6 +1,8 @@
 # Stat Priority Note
 
-A lightweight World of Warcraft addon that displays class and specialization stat priorities above the Character frame.
+A lightweight World of Warcraft addon that displays stat priorities for your current class and specialization directly above the Character window.
+
+The goal of this addon is to provide a quick reminder of stat priorities while inspecting gear without needing to open guides or websites.
 
 ## Features
 
